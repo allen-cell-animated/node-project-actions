@@ -1,6 +1,6 @@
-# Project name
+# Actions
 
-One line description
+Repo for actions to use across our projects 
 
 ---
 
