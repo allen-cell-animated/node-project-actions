@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "description": "Repo for actions to use across our projects",
   "main": "index.js",
-  "scripts": {
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/allen-cell-animated/node-project-actions.git"
