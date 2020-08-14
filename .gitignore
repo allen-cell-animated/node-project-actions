@@ -1,0 +1,9 @@
+.idea
+.gradle
+node_modules
+lib
+es
+dist
+public
+type-declarations
+style
