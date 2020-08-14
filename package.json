@@ -20,7 +20,7 @@
     "transpileCommonJs": "TS_NODE_PROJECT=tsconfig.commonjs.json babel src --out-dir lib --extensions .ts,.tsx --ignore src/**/*.test.ts",
     "processCSS": "postcss src/index.css --output style/style.css",
     "build": "npm-run-all generateTypes bundle transpileES transpileCommonJs processCSS",
-    "publish-patch": "npm version patch | xargs -I {} sh -c 'git push origin {} & git push origin master'"
+    "publish-patch": "npm version patch | xargs -I {} sh -c 'git push origin refs/tags/{} & git push origin master'"
   },
   "files": [
     "es",
