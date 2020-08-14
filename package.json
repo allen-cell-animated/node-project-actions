@@ -4,7 +4,7 @@
     "node": "12.x",
     "npm": "6.x"
   },
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Repo for actions to use across our projects",
   "module": "es/index.js",
   "browser": "dist/index.js",
