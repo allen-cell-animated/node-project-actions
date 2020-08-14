@@ -4,7 +4,7 @@
     "node": "12.x",
     "npm": "6.x"
   },
-  "version": "1.0.5",
+  "version": "1.0.4",
   "description": "Repo for actions to use across our projects",
   "module": "es/index.js",
   "browser": "dist/index.js",
@@ -20,7 +20,8 @@
     "transpileCommonJs": "TS_NODE_PROJECT=tsconfig.commonjs.json babel src --out-dir lib --extensions .ts,.tsx --ignore src/**/*.test.ts",
     "processCSS": "postcss src/index.css --output style/style.css",
     "build": "npm-run-all generateTypes bundle transpileES transpileCommonJs processCSS",
-    "publish-patch": "npm version patch | xargs -I {} sh -c 'git push origin {}'"
+    "publish-patch": "npm version patch | xargs -I {} sh -c 'git push origin {}'",
+    "postpublish-patch": "git push origin master"
   },
   "files": [
     "es",
