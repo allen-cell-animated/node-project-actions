@@ -40,18 +40,18 @@ jobs:
       - run: npm run typeCheck --if-present
 
   deploy-staging:
-    if: github.ref == 'ref/head/master'
+    if: ${{ github.ref == 'ref/head/master' && !startsWith(github.ref, 'refs/tags/v')}}
     needs: [lint, typeCheck, test]
-    name: Upload to Amazon S3
+    name: Staging deploy
     runs-on: ubuntu-latest
 
     steps:
        - run: echo "I only run if the branch has release in its name!"
 
   deploy-production:
-    if: startsWith(github.ref, 'refs/tags/v')
+    if: ${{  github.ref == 'ref/head/master' && startsWith(github.ref, 'refs/tags/v') }}
     needs: [lint, typeCheck, test]
-    name: Upload to Amazon S3
+    name: Production deploy 
     runs-on: ubuntu-latest
 
     steps:
