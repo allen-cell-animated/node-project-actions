@@ -41,7 +41,7 @@ jobs:
       - run: echo ${{ github.ref }}
 
   deploy-staging:
-    if: github.ref == 'ref/head/master'
+    if: github.ref == 'refs/heads/master'
     needs: [lint, typeCheck, test]
     name: Staging deploy
     runs-on: ubuntu-latest
