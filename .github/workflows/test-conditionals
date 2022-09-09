@@ -1,0 +1,60 @@
+name: Auto deploy staging AWS
+env: 
+  NODE_VERSION: '14.x'
+on: [push]
+
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{env.NODE_VERSION}}
+      - run: npm ci
+      - run: npm run lint --if-present
+  test:
+    name: Unit Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{env.NODE_VERSION}}
+      - run: npm ci
+      - run: npm test --if-present
+  typeCheck:
+    name: Type Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{env.NODE_VERSION}}
+      - run: npm ci
+      - run: npm run typeCheck --if-present
+
+  deploy-staging:
+    if: github.ref == 'ref/head/master'
+    needs: [lint, typeCheck, test]
+    name: Upload to Amazon S3
+    runs-on: ubuntu-latest
+
+    steps:
+       - run: echo "I only run if the branch has release in its name!"
+
+  deploy-production:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: [lint, typeCheck, test]
+    name: Upload to Amazon S3
+    runs-on: ubuntu-latest
+
+    steps:
+       - run: echo "I only run if the tags have v*"
+
+
