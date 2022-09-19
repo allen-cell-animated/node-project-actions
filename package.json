@@ -20,6 +20,8 @@
     "transpileCommonJs": "TS_NODE_PROJECT=tsconfig.commonjs.json babel src --out-dir lib --extensions .ts,.tsx --ignore src/**/*.test.ts",
     "processCSS": "postcss src/index.css --output style/style.css",
     "build": "npm-run-all generateTypes bundle transpileES transpileCommonJs processCSS",
+    "gh-build:stable": "GH_BUILD=true npm-run-all generateTypes bundle transpileES transpileCommonJs processCSS --env.dest stable",
+    "gh-build:dev": "GH_BUILD=true npm-run-all generateTypes bundle transpileES transpileCommonJs processCSS --env.dest dev",
     "publish-patch": "npm version patch | xargs -I {} sh -c 'git push origin {}'",
     "postpublish-patch": "git push origin master"
   },
